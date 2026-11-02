@@ -1,0 +1,16 @@
+[Unit]
+Description=Restaurant POS (Docker Compose)
+Documentation=https://github.com/ABISHEK-K-DEV/restaurant-pos#readme
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutStartSec=900
+ExecStart=/usr/bin/docker compose --project-name restaurant-pos --env-file /etc/restaurant-pos/restaurant-pos.env -f /usr/lib/restaurant-pos/docker-compose.yml up -d --remove-orphans
+ExecStop=/usr/bin/docker compose --project-name restaurant-pos --env-file /etc/restaurant-pos/restaurant-pos.env -f /usr/lib/restaurant-pos/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target
