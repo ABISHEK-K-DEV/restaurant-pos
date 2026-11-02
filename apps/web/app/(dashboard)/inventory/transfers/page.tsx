@@ -69,7 +69,7 @@ export default function TransfersPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Inventory</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Inventory</h1>
         <p className="text-sm text-muted-foreground">Move stock between your branches</p>
       </div>
       <InventoryTabs />

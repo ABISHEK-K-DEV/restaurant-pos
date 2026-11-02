@@ -65,7 +65,7 @@ export default function PurchaseOrderDetailPage({ params }: { params: Promise<{ 
           Purchase orders
         </Link>
         <div className="mt-2 flex items-center gap-3">
-          <h1 className="text-[32px] font-semibold tracking-tight text-foreground">{po.poNumber}</h1>
+          <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">{po.poNumber}</h1>
           <Badge>{po.status.replace("_", " ")}</Badge>
         </div>
         <p className="text-sm text-muted-foreground">

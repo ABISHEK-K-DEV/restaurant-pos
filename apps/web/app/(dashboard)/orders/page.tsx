@@ -98,7 +98,7 @@ function OrdersView() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Orders</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Orders</h1>
         <p className="text-sm text-muted-foreground">
           Accept new online orders and manage everything in progress
         </p>

@@ -297,7 +297,7 @@ export default function AccountingPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Accounting</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Accounting</h1>
         <p className="text-sm text-muted-foreground">Expenses, cash close, profit &amp; loss, balance sheet, budgets, bank reconciliation, tax and branches</p>
       </div>
       <div className="flex flex-wrap gap-2">

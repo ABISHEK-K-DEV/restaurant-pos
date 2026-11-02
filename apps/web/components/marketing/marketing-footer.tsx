@@ -31,32 +31,27 @@ const columns = [
 
 export function MarketingFooter() {
   return (
-    <footer className="border-t border-border/60 px-4 py-14 sm:px-6">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 sm:grid-cols-[1.5fr_repeat(3,1fr)]">
-          <div>
+    <footer className="bg-[#0A0A0A] px-4 pt-20 pb-10 text-[#F5F5F2] sm:px-6 lg:px-8 dark:bg-[#050505]">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-6">
             <Link href="/" className="flex items-center gap-2.5">
-              <Logo size={28} />
-              <span className="text-sm font-semibold text-foreground">Restaurant POS</span>
+              <Logo size={28} className="rounded-md" />
+              <span className="font-heading text-[15px] font-semibold tracking-[-0.015em]">Restaurant POS</span>
             </Link>
-            <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-              Offline-first restaurant management, self-hosted on your own
-              server. Built by Abishek K.
+            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-[#9A9A95]">
+              Offline-first restaurant management, self-hosted on your own server.
+              Designed and maintained by Abishek K.
             </p>
           </div>
 
           {columns.map((col) => (
-            <div key={col.title}>
-              <h3 className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                {col.title}
-              </h3>
-              <ul className="mt-3 flex flex-col gap-2.5">
+            <div key={col.title} className="lg:col-span-2">
+              <h3 className="eyebrow text-[#77776F]">{col.title}</h3>
+              <ul className="mt-5 flex flex-col gap-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
+                    <a href={l.href} className="text-[14px] text-[#D4D4CE] transition-colors hover:text-white">
                       {l.label}
                     </a>
                   </li>
@@ -66,11 +61,16 @@ export function MarketingFooter() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Abishek K. Licensed AGPL-3.0.
-          </p>
-          <p className="text-xs text-muted-foreground">Made in India.</p>
+        <p
+          aria-hidden
+          className="mt-24 font-display text-[clamp(56px,13vw,200px)] leading-[0.82] font-semibold tracking-[-0.055em] text-[#F5F5F2]"
+        >
+          Restaurant POS<span className="text-brand">.</span>
+        </p>
+
+        <div className="mt-10 flex flex-col justify-between gap-3 border-t border-[#262626] pt-6 sm:flex-row">
+          <p className="eyebrow text-[#77776F]">&copy; {new Date().getFullYear()} Abishek K · Licensed AGPL-3.0</p>
+          <p className="eyebrow text-[#77776F]">Self-hosted · Offline-first · Open source</p>
         </div>
       </div>
     </footer>

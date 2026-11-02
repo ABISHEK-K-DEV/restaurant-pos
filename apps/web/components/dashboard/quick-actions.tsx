@@ -16,8 +16,14 @@ const ACTIONS = [
 export function QuickActions() {
   return (
     <div className="flex flex-wrap gap-2">
-      {ACTIONS.map((action) => (
-        <Button key={action.href} variant="outline" size="sm" render={<Link href={action.href} />}>
+      {ACTIONS.map((action, i) => (
+        <Button
+          key={action.href}
+          variant={i === 0 ? "default" : "outline"}
+          size="sm"
+          className="h-8 px-3"
+          render={<Link href={action.href} />}
+        >
           <action.icon className="h-4 w-4" />
           {action.label}
         </Button>

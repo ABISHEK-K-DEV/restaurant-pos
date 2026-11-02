@@ -352,7 +352,7 @@ function TeamView() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Team</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Team</h1>
         <p className="text-sm text-muted-foreground">Schedules, leave, payroll and performance</p>
       </div>
       <div className="flex flex-wrap gap-2">

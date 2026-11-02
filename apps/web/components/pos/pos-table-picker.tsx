@@ -12,9 +12,9 @@ import type { Floor, RestaurantTable } from "@/hooks/use-tables";
 import { cn } from "@/lib/utils";
 
 const STATUS_STYLES: Record<TableStatusDto, string> = {
-  AVAILABLE: "bg-success/10 border-success/30 text-success hover:bg-success/15",
-  OCCUPIED: "bg-primary/10 border-primary/30 text-primary hover:bg-primary/15",
-  RESERVED: "bg-warning/10 border-warning/30 text-warning hover:bg-warning/15",
+  AVAILABLE: "bg-card border-success/45 text-foreground [&>svg:first-child]:text-success hover:border-success",
+  OCCUPIED: "bg-primary border-primary text-primary-foreground hover:bg-primary/90",
+  RESERVED: "bg-warning/8 border-warning/50 border-dashed text-foreground [&>svg:first-child]:text-warning hover:bg-warning/12",
   CLEANING: "bg-muted border-border text-muted-foreground",
   OUT_OF_SERVICE: "bg-muted border-border text-muted-foreground opacity-50",
 };
@@ -97,19 +97,19 @@ export function PosTablePicker({
               title={STATUS_LABEL[table.status]}
               onClick={() => onSelect(table)}
               className={cn(
-                "flex h-28 flex-col items-center justify-center gap-1 rounded-2xl border-2 p-3 text-xs font-medium shadow-sm transition-transform lg:h-36 lg:gap-1.5",
-                clickable && "cursor-pointer hover:scale-[1.03] hover:shadow-md",
+                "flex h-28 flex-col items-center justify-center gap-1 rounded-md border-[1.5px] p-3 text-xs font-medium transition-[transform,background-color,border-color] duration-150 lg:h-36 lg:gap-1.5",
+                clickable && "cursor-pointer hover:-translate-y-0.5",
                 !clickable && "cursor-not-allowed",
                 STATUS_STYLES[table.status],
               )}
             >
               <TableShapeIcon shape={table.shape} capacity={table.capacity} className="h-6 w-6 lg:h-8 lg:w-8" />
-              <span className="text-sm font-semibold lg:text-lg">{table.name ?? `T${table.number}`}</span>
+              <span className="font-heading text-sm font-semibold tracking-[-0.01em] lg:text-lg">{table.name ?? `T${table.number}`}</span>
               <span className="flex items-center gap-1 text-[11px] opacity-80">
                 <Users className="h-3 w-3" />
                 {table.capacity}
               </span>
-              <span className="hidden rounded-full bg-background/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide lg:inline">
+              <span className="hidden rounded-[3px] border border-current/25 px-1.5 py-0.5 font-mono text-[9.5px] font-medium uppercase tracking-[0.08em] opacity-80 lg:inline">
                 {table.status === "OUT_OF_SERVICE" ? "Out of service" : table.status.toLowerCase()}
               </span>
               {(table.status === "OCCUPIED" || table.status === "RESERVED") && (

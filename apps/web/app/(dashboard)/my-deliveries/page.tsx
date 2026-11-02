@@ -239,7 +239,7 @@ export default function MyDeliveriesPage() {
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-5">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">My deliveries</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">My deliveries</h1>
         <p className="flex items-center gap-1 text-sm text-muted-foreground">
           <MapPin className="h-3.5 w-3.5" aria-hidden />
           {d.name} · {d.location.name}

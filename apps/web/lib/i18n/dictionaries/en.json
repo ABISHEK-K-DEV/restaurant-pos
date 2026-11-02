@@ -108,5 +108,16 @@
   "kiosk.ticket.notPaid": "NOT PAID",
   "kiosk.ticket.payAtCounter": "Pay at the counter",
   "kiosk.language": "Language",
-  "nav.myDeliveries": "My deliveries"
+  "nav.myDeliveries": "My deliveries",
+  "navGroup.service": "Service",
+  "navGroup.kitchen": "Kitchen & stock",
+  "navGroup.people": "Guests & team",
+  "navGroup.business": "Business",
+  "shell.search": "Search or jump to…",
+  "shell.noResults": "No matches",
+  "shell.navigate": "Go to",
+  "shell.actions": "Actions",
+  "shell.toggleTheme": "Toggle light / dark",
+  "shell.collapse": "Collapse sidebar",
+  "shell.expand": "Expand sidebar"
 }

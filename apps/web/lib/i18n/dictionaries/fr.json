@@ -37,5 +37,16 @@
   "order.items": "articles",
   "order.couldNotPlace": "Impossible de passer la commande — demandez de l'aide à un membre du personnel.",
   "order.pricesIncludeTax": "Les prix incluent les taxes. Le personnel confirmera votre commande sous peu.",
-  "nav.myDeliveries": "Mes livraisons"
+  "nav.myDeliveries": "Mes livraisons",
+  "navGroup.service": "Service",
+  "navGroup.kitchen": "Cuisine et stock",
+  "navGroup.people": "Clients et équipe",
+  "navGroup.business": "Gestion",
+  "shell.search": "Rechercher ou aller à…",
+  "shell.noResults": "Aucun résultat",
+  "shell.navigate": "Aller à",
+  "shell.actions": "Actions",
+  "shell.toggleTheme": "Thème clair / sombre",
+  "shell.collapse": "Réduire la barre latérale",
+  "shell.expand": "Développer la barre latérale"
 }

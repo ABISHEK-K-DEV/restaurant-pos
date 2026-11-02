@@ -7,77 +7,103 @@ import { Button } from "@/components/ui/button";
 import { downloadHref } from "@/lib/downloads";
 import { PosMockup } from "@/components/marketing/pos-mockup";
 
-const words = ["Restaurant", "software", "you", "actually", "own."];
+const EASE = [0.2, 0, 0, 1] as const;
+
+const FACTS = [
+  ["18", "modules, one stack"],
+  ["0", "subscription fees"],
+  ["100%", "works with the internet down"],
+  ["3", "languages: EN · ES · FR"],
+] as const;
+
+const lines = ["Restaurant software", "you actually own"];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-4 pt-20 pb-24 sm:px-6 sm:pt-28">
-      {/* Ambient gradient glow — transform/opacity only, no layout cost */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_oklch,var(--primary),transparent_88%),transparent)]"
-      />
+    <section className="relative overflow-hidden border-b border-border">
+      <div aria-hidden className="swiss-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
 
-      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground"
-        >
-          <span className="size-1.5 rounded-full bg-success" />
-          Open source · AGPL-3.0 · self-hosted
-        </motion.div>
-
-        <h1 className="flex flex-wrap justify-center gap-x-3 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
-          {words.map((word, i) => (
-            <motion.span
-              key={word}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className={word === "own." ? "text-primary" : undefined}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-
+      <div className="relative mx-auto max-w-7xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8">
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-2xl text-balance text-lg text-muted-foreground sm:text-xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="eyebrow flex items-center gap-2.5 text-muted-foreground"
         >
-          POS, kitchen display, tables, reservations, inventory, and CRM — one
-          self-hosted stack that runs on your own LAN. No subscription, no
-          forced cloud dependency, no vendor lock-in. Your orders, your
-          customers&rsquo; data, your server.
+          <span className="h-1.5 w-1.5 bg-brand" />
+          Open source · AGPL-3.0 · Self-hosted
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
-        >
-          <Button size="lg" className="h-11 px-6 text-[15px]" render={<Link href="/signup" />}>
-            Get started free
-            <ArrowRight className="size-4" data-icon="inline-end" />
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="h-11 px-6 text-[15px]"
-            render={<a href={downloadHref("github")} />}
+        <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
+          <h1 className="font-display text-[44px] leading-[0.95] font-semibold tracking-[-0.045em] text-foreground sm:text-[72px] lg:col-span-8 lg:text-[96px]">
+            {lines.map((line, i) => (
+              <span key={line} className="block overflow-hidden pb-[0.06em]">
+                <motion.span
+                  className="block"
+                  initial={{ y: "105%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.08 + i * 0.09, ease: EASE }}
+                >
+                  {line}
+                  {i === lines.length - 1 && <span className="text-brand">.</span>}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35, ease: EASE }}
+            className="flex flex-col gap-7 lg:col-span-4 lg:pb-3"
           >
-            <Github className="size-4" data-icon="inline-start" />
-            View on GitHub
-          </Button>
-        </motion.div>
+            <p className="text-[17px] leading-relaxed text-muted-foreground">
+              Point of sale, kitchen display, tables, reservations, inventory and CRM — one
+              self-hosted system on your own network. No subscription, no lock-in. Your
+              orders, your guests&rsquo; data, your server.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button size="lg" className="h-12 px-6 text-[15px]" render={<Link href="/signup" />}>
+                Get started free
+                <ArrowRight className="size-4" data-icon="inline-end" />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-12 px-6 text-[15px]"
+                render={<a href={downloadHref("github")} />}
+              >
+                <Github className="size-4" data-icon="inline-start" />
+                Source code
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.dl
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-16 grid grid-cols-2 border-t border-foreground lg:grid-cols-4"
+        >
+          {FACTS.map(([value, label], i) => (
+            <div
+              key={label}
+              className="flex flex-col gap-2 border-border py-6 pr-6 max-lg:even:pl-6 max-lg:even:border-l lg:border-l lg:pl-6 lg:first:border-l-0 lg:first:pl-0"
+            >
+              <dt className="eyebrow text-muted-foreground">{String(i + 1).padStart(2, "0")}</dt>
+              <dd className="flex flex-col gap-1">
+                <span className="font-display text-4xl font-semibold tracking-[-0.04em] tabular-nums text-foreground">
+                  {value}
+                </span>
+                <span className="text-sm text-muted-foreground">{label}</span>
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
       </div>
 
-      <div className="mt-16 sm:mt-20">
+      <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-24 sm:px-6 lg:px-8">
         <PosMockup />
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { BranchNotice } from "@/components/layout/branch-notice";
-import { AlertTriangle, ChefHat, SlidersHorizontal, ClipboardList, Flame, Globe, HandCoins, ReceiptText, Store, Timer, TrendingUp, Trash2, UserRound, Users, Wallet } from "lucide-react";
+import { AlertTriangle, ArrowUpRight, ChefHat, SlidersHorizontal, ClipboardList, Flame, Globe, HandCoins, ReceiptText, Store, Timer, TrendingUp, Trash2, UserRound, Users, Wallet } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { QuickActions } from "@/components/dashboard/quick-actions";
@@ -55,44 +55,61 @@ function StatCard({
       href={href}
       aria-label={`${label}: ${value}. Open details`}
       className={cn(
-        "group block rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        "group block rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className,
       )}
     >
-    <Card
-      className={cn(
-        "flex h-full flex-col transition group-hover:border-primary/40 group-hover:shadow-md",
-        hero
-          ? "justify-between gap-6 border-success/25 bg-gradient-to-br from-success/10 via-card to-card p-6 sm:p-7"
-          : compact
-            ? "gap-2 p-4"
-            : "gap-3 p-4 sm:p-6",
-        accent === "warning" && !hero && "border-warning/40",
-      )}
-    >
-      <div className="flex items-center justify-between">
-        <span className={cn("font-medium text-muted-foreground", compact ? "text-xs" : "text-[13px]")}>{label}</span>
-        <div
-          className={cn(
-            "flex items-center justify-center rounded-xl",
-            compact ? "h-7 w-7" : "h-9 w-9",
-            accent === "success" && "bg-success/10 text-success",
-            accent === "warning" && "bg-warning/10 text-warning",
-            !accent && "bg-primary/10 text-primary",
-          )}
-        >
-          <Icon className={compact ? "h-4 w-4" : "h-[18px] w-[18px]"} />
-        </div>
-      </div>
-      <span
+      <Card
         className={cn(
-          "font-semibold tabular-nums tracking-tight text-foreground",
-          hero ? "text-4xl sm:text-5xl" : compact ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl",
+          "relative flex h-full flex-col justify-between transition-colors duration-150",
+          hero
+            ? "gap-8 bg-primary p-6 text-primary-foreground ring-0 sm:p-7"
+            : compact
+              ? "gap-4 p-4 group-hover:ring-foreground/30"
+              : "gap-6 p-5 group-hover:ring-foreground/30 sm:p-6",
         )}
       >
-        {value}
-      </span>
-    </Card>
+        <div className="flex items-center justify-between gap-2">
+          <span
+            className={cn(
+              "eyebrow flex items-center gap-2",
+              hero ? "text-primary-foreground/60" : "text-muted-foreground",
+            )}
+          >
+            {hero && <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />}
+            {accent === "warning" && !hero && value !== "0" && (
+              <span className="h-1.5 w-1.5 rounded-full bg-warning" aria-hidden />
+            )}
+            {label}
+          </span>
+          <Icon
+            className={cn(
+              "shrink-0 transition-colors",
+              compact ? "h-3.5 w-3.5" : "h-4 w-4",
+              hero ? "text-primary-foreground/50" : "text-muted-foreground/70 group-hover:text-foreground",
+            )}
+            strokeWidth={1.8}
+          />
+        </div>
+        <div className="flex items-end justify-between gap-3">
+          <span
+            className={cn(
+              "font-display leading-none font-semibold tracking-[-0.04em] tabular-nums",
+              hero ? "text-5xl sm:text-6xl" : compact ? "text-2xl" : "text-4xl",
+              accent === "warning" && !hero && value !== "0" ? "text-warning" : undefined,
+            )}
+          >
+            {value}
+          </span>
+          <ArrowUpRight
+            aria-hidden
+            className={cn(
+              "h-4 w-4 shrink-0 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100",
+              hero ? "text-primary-foreground/70" : "text-foreground",
+            )}
+          />
+        </div>
+      </Card>
     </Link>
   );
 }
@@ -112,13 +129,13 @@ function TableStatusRow({
     <Link
       href={href}
       aria-label={`${label}: ${count}. Open`}
-      className="-mx-2 flex items-center justify-between rounded-lg px-2 py-1.5 text-sm outline-none transition hover:bg-secondary focus-visible:ring-2 focus-visible:ring-primary"
+      className="-mx-2 flex items-center justify-between rounded-md border-b border-border/70 px-2 py-2.5 text-sm outline-none transition last:border-0 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <div className="flex items-center gap-2">
-        <span className={cn("h-2 w-2 rounded-full", dotClass)} />
+      <div className="flex items-center gap-2.5">
+        <span className={cn("h-2 w-2 rounded-[2px]", dotClass)} />
         <span className="text-muted-foreground">{label}</span>
       </div>
-      <span className="font-medium tabular-nums text-foreground">{count}</span>
+      <span className="font-mono text-[13px] font-medium tabular-nums text-foreground">{count}</span>
     </Link>
   );
 }
@@ -155,20 +172,21 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="text-[32px] font-semibold tracking-tight text-foreground">
-            {greeting}
-            {firstName ? `, ${firstName}` : ""}
-          </h1>
-          <p className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span className="relative flex h-2 w-2" aria-hidden>
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success/60 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+        <div className="flex flex-col gap-3">
+          <p className="eyebrow flex items-center gap-2 text-muted-foreground">
+            <span className="relative flex h-1.5 w-1.5" aria-hidden>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/60 motion-reduce:animate-none" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
             </span>
             Live · {today}
           </p>
+          <h1 className="text-[40px] text-foreground sm:text-[48px]">
+            {greeting}
+            {firstName ? `, ${firstName}` : ""}
+            <span className="text-brand">.</span>
+          </h1>
         </div>
         <Button
           variant="outline"
@@ -207,7 +225,7 @@ export default function DashboardPage() {
       {isLoading || !data ? (
         <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-5">
           {Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={i} className={cn("h-[120px] rounded-2xl", i === 0 && "col-span-2 xl:col-span-2")} />
+            <Skeleton key={i} className={cn("h-[168px] rounded-lg", i === 0 && "col-span-2 xl:col-span-2")} />
           ))}
         </div>
       ) : (
@@ -296,7 +314,7 @@ export default function DashboardPage() {
           icon={TrendingUp}
           data={trends?.revenue ?? []}
           valueKey="amount"
-          color="var(--success)"
+          color="var(--foreground)"
           valueFormatter={(v) => formatCurrency(v)}
           isLoading={trendsLoading}
           emptyMessage={`No paid orders in the last ${prefs.trendDays} days yet.`}
@@ -306,7 +324,7 @@ export default function DashboardPage() {
           icon={Trash2}
           data={trends?.waste ?? []}
           valueKey="cost"
-          color="var(--warning)"
+          color="var(--brand)"
           valueFormatter={(v) => formatCurrency(v)}
           isLoading={trendsLoading}
           emptyMessage={`No waste logged in the last ${prefs.trendDays} days — nice.`}
@@ -315,11 +333,11 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 xl:grid-cols-4" style={{ order: 100 }}>
         <Card {...slot("card", "tables", "flex flex-col gap-1 p-6 lg:col-span-1")}>
-          <h2 className="mb-3 text-[18px] font-medium text-foreground">Tables</h2>
+          <h2 className="mb-3 eyebrow text-muted-foreground">Tables</h2>
           {data && (
             <>
               <TableStatusRow label="Available" count={data.tables.available} dotClass="bg-success" href="/tables" />
-              <TableStatusRow label="Occupied" count={data.tables.occupied} dotClass="bg-primary" href="/tables" />
+              <TableStatusRow label="Occupied" count={data.tables.occupied} dotClass="bg-brand" href="/tables" />
               <TableStatusRow label="Reserved" count={data.tables.reserved} dotClass="bg-warning" href="/tables" />
               <TableStatusRow label="Cleaning" count={data.tables.cleaning} dotClass="bg-muted-foreground" href="/tables" />
             </>
@@ -327,13 +345,13 @@ export default function DashboardPage() {
         </Card>
 
         <Card {...slot("card", "kitchen", "flex flex-col gap-1 p-6 lg:col-span-1")}>
-          <h2 className="mb-3 flex items-center gap-2 text-[18px] font-medium text-foreground">
-            <ChefHat className="h-[18px] w-[18px] text-muted-foreground" />
+          <h2 className="mb-3 flex items-center gap-2 eyebrow text-muted-foreground">
+            <ChefHat className="h-3.5 w-3.5" />
             Kitchen queue
           </h2>
           {data && (
             <>
-              <TableStatusRow label="New" count={data.kitchenQueue.new} dotClass="bg-primary" href="/kds" />
+              <TableStatusRow label="New" count={data.kitchenQueue.new} dotClass="bg-brand" href="/kds" />
               <TableStatusRow label="Accepted" count={data.kitchenQueue.accepted} dotClass="bg-warning" href="/kds" />
               <TableStatusRow label="Preparing" count={data.kitchenQueue.preparing} dotClass="bg-warning" href="/kds" />
               <TableStatusRow label="Ready" count={data.kitchenQueue.ready} dotClass="bg-success" href="/kds" />
@@ -342,8 +360,8 @@ export default function DashboardPage() {
         </Card>
 
         <Card {...slot("card", "recent", "flex flex-col gap-3 p-6 lg:col-span-1")}>
-          <h2 className="flex items-center gap-2 text-[18px] font-medium text-foreground">
-            <Timer className="h-[18px] w-[18px] text-muted-foreground" />
+          <h2 className="flex items-center gap-2 eyebrow text-muted-foreground">
+            <Timer className="h-3.5 w-3.5" />
             Recent transactions
           </h2>
           <div className="flex flex-col divide-y divide-border">
@@ -353,27 +371,26 @@ export default function DashboardPage() {
             {data?.recentOrders.map((order) => {
               const isOnline = ONLINE_ORDER_TYPES.has(order.type);
               return (
-                <button
-                  key={order.id}
-                  type="button"
-                  onClick={() => setViewingOrderId(order.id)}
-                  className="flex items-center justify-between py-2.5 text-left text-sm transition hover:opacity-80"
-                  title="View order details"
-                >
-                  <div className="flex flex-col">
-                    <span className="font-medium text-foreground">#{order.orderNumber}</span>
+                <div key={order.id} className="flex items-center justify-between gap-2 py-2.5 text-sm">
+                  <button
+                    type="button"
+                    onClick={() => setViewingOrderId(order.id)}
+                    className="flex min-w-0 flex-1 flex-col text-left transition hover:opacity-70"
+                    title="View order details"
+                  >
+                    <span className="font-mono text-[13px] font-medium text-foreground">#{order.orderNumber}</span>
                     <Badge
                       variant="secondary"
                       className={cn(
                         "mt-0.5 w-fit text-[11px] font-normal",
-                        isOnline && "bg-primary/10 text-primary",
+                        isOnline && "bg-brand/10 text-brand",
                       )}
                     >
                       {order.type.replace("_", " ")}
                     </Badge>
-                  </div>
+                  </button>
                   <div className="flex items-center gap-1">
-                    <span className="font-medium tabular-nums text-foreground">
+                    <span className="font-mono text-[13px] font-medium tabular-nums text-foreground">
                       {formatCurrency(order.totalAmount)}
                     </span>
                     <RefundDialog
@@ -383,15 +400,15 @@ export default function DashboardPage() {
                       maxAmount={Number(order.totalAmount)}
                     />
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
         </Card>
 
         <Card {...slot("card", "channels", "flex flex-col gap-3 p-6 lg:col-span-1")}>
-          <h2 className="flex items-center gap-2 text-[18px] font-medium text-foreground">
-            <ReceiptText className="h-[18px] w-[18px] text-muted-foreground" />
+          <h2 className="flex items-center gap-2 eyebrow text-muted-foreground">
+            <ReceiptText className="h-3.5 w-3.5" />
             Order channels
           </h2>
           <p className="text-xs text-muted-foreground">Today, self-serve vs staff-entered</p>
@@ -423,9 +440,9 @@ export default function DashboardPage() {
                   {data.channels.offline}
                 </span>
               </Link>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-secondary">
+              <div className="mt-2 h-1.5 overflow-hidden rounded-[2px] bg-secondary">
                 <div
-                  className="h-full bg-primary transition-all"
+                  className="h-full bg-brand transition-all duration-500"
                   style={{
                     width: `${
                       data.channels.online + data.channels.offline === 0
@@ -448,8 +465,9 @@ function PendingOrdersBanner({ branchId }: { branchId: string | null }) {
   const { data } = useManagedOrders(branchId, "pending");
   if (!data || data.length === 0) return null;
   return (
-    <Card className="flex flex-col gap-3 border-primary/40 bg-primary/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+    <Card className="flex flex-col gap-3 border-l-[3px] border-l-brand p-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
+        <p className="eyebrow mb-1.5 text-brand">Action needed</p>
         <p className="text-sm font-semibold text-foreground">
           {data.length} online order{data.length === 1 ? "" : "s"} waiting for you
         </p>
@@ -459,11 +477,11 @@ function PendingOrdersBanner({ branchId }: { branchId: string | null }) {
         <button
           type="button"
           onClick={() => openEntity("Order", data[0].id)}
-          className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+          className="rounded-md bg-brand px-3 py-1.5 text-sm font-medium text-brand-foreground hover:bg-brand/90"
         >
           Review #{data[0].orderNumber}
         </button>
-        <Link href="/orders" className="rounded-lg border border-border px-3 py-1.5 text-sm">
+        <Link href="/orders" className="rounded-md border border-input bg-card px-3 py-1.5 text-sm hover:border-foreground/40">
           All orders
         </Link>
       </div>

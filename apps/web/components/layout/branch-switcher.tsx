@@ -17,12 +17,12 @@ export function BranchSwitcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex w-full items-center gap-2 rounded-xl border border-sidebar-border bg-sidebar px-3 py-2 text-left text-sm hover:bg-sidebar-accent/50">
-        <Store className="h-4 w-4 shrink-0 text-muted-foreground" />
+      <DropdownMenuTrigger className="flex h-10 w-full items-center gap-2.5 rounded-md border border-sidebar-border bg-sidebar-accent/60 px-3 text-left text-[13px] transition-colors hover:border-sidebar-muted/40 hover:bg-sidebar-accent">
+        <Store className="h-3.5 w-3.5 shrink-0 text-sidebar-muted" />
         <span className="flex-1 truncate font-medium text-sidebar-foreground">
           {current?.name ?? "Select branch"}
         </span>
-        <ChevronsUpDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+        <ChevronsUpDown className="h-3.5 w-3.5 shrink-0 text-sidebar-muted" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-56">
         {branches.map((branch) => (

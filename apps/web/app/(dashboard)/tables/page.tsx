@@ -88,7 +88,7 @@ export default function TablesPage() {
       <TableRequestsBar branchId={branchId} />
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div>
-          <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Tables</h1>
+          <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Tables</h1>
           <p className="text-sm text-muted-foreground">
             {editMode
               ? "Drag tables to match your floor — changes save automatically"

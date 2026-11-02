@@ -268,7 +268,7 @@ export default function MarketingPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Marketing</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Marketing</h1>
         <p className="text-sm text-muted-foreground">Coupons, happy hours and customer campaigns</p>
       </div>
       <div className="flex gap-2">

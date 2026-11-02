@@ -41,7 +41,7 @@ export function MobileBottomNav({
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-0 z-30 flex border-t border-border bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 flex border-t border-border bg-card/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
     >
       {primary.map((item) => {
         const isActive = pathname?.startsWith(item.href);
@@ -54,13 +54,14 @@ export function MobileBottomNav({
             className={cn(
               itemClass,
               "h-16",
-              isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
+              isActive ? "text-foreground" : "text-muted-foreground active:text-foreground",
             )}
           >
-            <Icon className="h-5 w-5" strokeWidth={isActive ? 2.5 : 2} />
+            {isActive && <span aria-hidden className="absolute top-0 left-1/2 h-[2px] w-8 -translate-x-1/2 bg-brand" />}
+            <Icon className="h-5 w-5" strokeWidth={isActive ? 2.2 : 1.8} />
             <span className="max-w-full truncate px-1">{t(item.labelKey)}</span>
             {badges.nav[item.href] && !isActive ? (
-              <span className="absolute top-2 left-1/2 ml-2 h-2.5 w-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_2px_rgba(245,158,11,0.7)]" />
+              <span className="absolute top-2 left-1/2 ml-2 h-2.5 w-2.5 rounded-full bg-brand" />
             ) : null}
           </Link>
         );

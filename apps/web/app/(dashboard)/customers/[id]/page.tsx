@@ -52,7 +52,7 @@ export default function CustomerDetailPage({ params }: { params: Promise<{ id: s
             <ArrowLeft className="h-3.5 w-3.5" />
             Customers
           </Link>
-          <h1 className="mt-2 text-[32px] font-semibold tracking-tight text-foreground">
+          <h1 className="mt-2 text-[34px] font-semibold text-foreground sm:text-[40px]">
             {customer.name ?? "Unnamed customer"}
           </h1>
           <p className="text-sm text-muted-foreground">

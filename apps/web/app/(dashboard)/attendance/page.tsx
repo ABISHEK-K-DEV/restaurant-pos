@@ -83,7 +83,7 @@ export default function AttendancePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Attendance</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Attendance</h1>
         <p className="text-sm text-muted-foreground">Clock in and out of your shift</p>
       </div>
 

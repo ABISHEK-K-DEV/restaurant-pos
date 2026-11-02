@@ -20,9 +20,9 @@ import { TableQrDialog } from "./table-qr-dialog";
 import { TableShapeIcon } from "./table-shape-icon";
 
 const STATUS_STYLES: Record<TableStatusDto, string> = {
-  AVAILABLE: "bg-success/10 border-success/30 text-success",
-  OCCUPIED: "bg-primary/10 border-primary/30 text-primary",
-  RESERVED: "bg-warning/10 border-warning/30 text-warning",
+  AVAILABLE: "bg-card border-success/45 text-foreground [&>svg:first-child]:text-success",
+  OCCUPIED: "bg-primary border-primary text-primary-foreground",
+  RESERVED: "bg-warning/8 border-warning/50 border-dashed text-foreground [&>svg:first-child]:text-warning",
   CLEANING: "bg-muted border-border text-muted-foreground",
   OUT_OF_SERVICE: "bg-muted border-border text-muted-foreground opacity-60",
 };
@@ -58,12 +58,12 @@ export function TableTile({
         <DropdownMenuTrigger
           style={style}
           className={cn(
-            "absolute flex flex-col items-center justify-center gap-1 rounded-2xl border-2 text-xs font-medium shadow-sm transition-transform hover:scale-[1.03]",
+            "absolute flex flex-col items-center justify-center gap-1 rounded-md border-[1.5px] text-xs font-medium transition-[transform,background-color,border-color] duration-150 hover:-translate-y-0.5",
             STATUS_STYLES[table.status],
           )}
         >
           <TableShapeIcon shape={table.shape} capacity={table.capacity} className="h-6 w-6" />
-          <span className="text-sm font-semibold">{table.name ?? `T${table.number}`}</span>
+          <span className="font-heading text-sm font-semibold tracking-[-0.01em]">{table.name ?? `T${table.number}`}</span>
           <span className="flex items-center gap-1 text-[11px] opacity-80">
             <Users className="h-3 w-3" />
             {table.capacity}

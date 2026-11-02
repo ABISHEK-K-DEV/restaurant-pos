@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/marketing/reveal";
+import { SectionHeader } from "@/components/marketing/section-header";
 
 const views = [
   { id: "dashboard", label: "Dashboard", src: "/screenshots/dashboard-light.png" },
@@ -21,21 +22,23 @@ export function ProductShowcase() {
   const current = views.find((v) => v.id === active)!;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <Reveal className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-          See it in action
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
-          The actual app — no staged demo data, no Photoshop.
-        </p>
-      </Reveal>
+    <section id="product" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <SectionHeader
+        index="01"
+        label="Product"
+        title={
+          <>
+            See it in action<span className="text-brand">.</span>
+          </>
+        }
+        description="The actual app — real screens from a running install, not mock-ups."
+      />
 
-      <Reveal delay={0.1} className="mt-8 flex justify-center">
+      <Reveal delay={0.1} className="mt-12">
         <div
           role="tablist"
           aria-label="Product views"
-          className="inline-flex gap-1 rounded-xl border border-border/60 bg-muted/40 p-1"
+          className="flex gap-8 overflow-x-auto border-b border-border"
         >
           {views.map((v) => (
             <button
@@ -45,24 +48,26 @@ export function ProductShowcase() {
               aria-selected={active === v.id}
               onClick={() => setActive(v.id)}
               className={cn(
-                "rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors",
+                "relative -mb-px flex shrink-0 items-baseline gap-2 border-b-2 py-3 text-sm font-medium transition-colors",
                 active === v.id
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "border-brand text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
               )}
             >
+              <span className="font-mono text-[10px] text-muted-foreground">
+                {String(views.indexOf(v) + 1).padStart(2, "0")}
+              </span>
               {v.label}
             </button>
           ))}
         </div>
       </Reveal>
 
-      <Reveal delay={0.16} className="relative mt-8">
-        <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[0_20px_70px_-20px_rgba(0,0,0,0.35)]">
-          <div className="flex items-center gap-1.5 border-b border-border/60 bg-muted/40 px-4 py-2.5">
-            <span className="size-2.5 rounded-full bg-destructive/50" />
-            <span className="size-2.5 rounded-full bg-warning/50" />
-            <span className="size-2.5 rounded-full bg-success/50" />
+      <Reveal delay={0.16} className="relative mt-10">
+        <div className="overflow-hidden rounded-lg border border-border bg-card shadow-[0_40px_80px_-40px_rgba(10,10,10,0.35)]">
+          <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+            <span className="eyebrow text-muted-foreground">{current.label}</span>
+            <span className="eyebrow text-muted-foreground">localhost:1995</span>
           </div>
           <div className="relative aspect-[1440/900] w-full bg-muted/20">
             <AnimatePresence mode="wait">

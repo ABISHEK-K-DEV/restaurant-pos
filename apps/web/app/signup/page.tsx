@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { StatusNote, useNoteToast } from "@/components/ui/status-note";
-import { Logo } from "@/components/layout/logo";
+import { AuthFrame, AuthHeading } from "@/components/layout/auth-frame";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -36,26 +36,23 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="relative flex flex-1 items-center justify-center overflow-hidden bg-background px-4 py-10">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(50%_50%_at_50%_0%,color-mix(in_oklch,var(--primary),transparent_90%),transparent)]"
-      />
+    <AuthFrame
+      aside={
+        <>
+          Have an account?{" "}
+          <Link href="/login" className="font-medium text-foreground underline-offset-4 hover:underline">
+            Sign in
+          </Link>
+        </>
+      }
+    >
       <motion.div
         initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-sm"
+        className="w-full"
       >
-        <div className="mb-10 flex flex-col items-center gap-2 text-center">
-          <Link href="/">
-            <Logo size={44} />
-          </Link>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-            Restaurant POS
-          </h1>
-          <p className="text-sm text-muted-foreground">Set up your restaurant</p>
-        </div>
+        <AuthHeading eyebrow="Create account" title="Open your restaurant." subtitle="Set up your restaurant in under a minute." />
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
@@ -124,18 +121,12 @@ export default function SignupPage() {
           </div>
 
           <StatusNote note={note} onClear={clear} />
-          <Button type="submit" className="mt-2 h-11" disabled={register.isPending}>
+          <Button type="submit" className="mt-2 h-11 text-[14px]" disabled={register.isPending}>
             {register.isPending ? "Creating your account…" : "Create account"}
           </Button>
         </form>
 
-        <p className="mt-8 text-center text-xs text-muted-foreground">
-          Already have an account?{" "}
-          <Link href="/login" className="font-medium text-foreground hover:underline">
-            Sign in
-          </Link>
-        </p>
       </motion.div>
-    </main>
+    </AuthFrame>
   );
 }

@@ -150,7 +150,7 @@ export default function OperationsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[32px] font-semibold tracking-tight text-foreground">Operations</h1>
+        <h1 className="text-[34px] font-semibold text-foreground sm:text-[40px]">Operations</h1>
         <p className="text-sm text-muted-foreground">Equipment servicing and your digital documents</p>
       </div>
       <div className="flex gap-2">

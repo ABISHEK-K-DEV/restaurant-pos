@@ -39,7 +39,7 @@ export function UserMenu({ user }: { user?: SessionUser }) {
       <button
         type="button"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary"
+        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
         aria-label="Toggle theme"
       >
         <Sun className="h-[18px] w-[18px] dark:hidden" />
@@ -47,13 +47,13 @@ export function UserMenu({ user }: { user?: SessionUser }) {
       </button>
 
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-secondary">
-          <Avatar className="h-8 w-8">
-            <AvatarFallback className="bg-primary text-xs font-medium text-primary-foreground">
+        <DropdownMenuTrigger className="flex items-center gap-2.5 rounded-md py-1 pr-2 pl-1 transition-colors hover:bg-secondary">
+          <Avatar className="h-7 w-7 rounded-md after:rounded-md">
+            <AvatarFallback className="rounded-md bg-primary font-mono text-[11px] font-medium text-primary-foreground">
               {initials(user?.name)}
             </AvatarFallback>
           </Avatar>
-          <span className="hidden text-sm font-medium sm:block">{user?.name}</span>
+          <span className="hidden flex-col text-left leading-tight sm:flex"><span className="text-[13px] font-medium">{user?.name}</span><span className="text-[11px] text-muted-foreground">{user?.roleName?.replace(/_/g, " ").toLowerCase()}</span></span>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel>

@@ -108,5 +108,16 @@
   "kiosk.ticket.notPaid": "NO PAGADO",
   "kiosk.ticket.payAtCounter": "Pague en caja",
   "kiosk.language": "Idioma",
-  "nav.myDeliveries": "Mis entregas"
+  "nav.myDeliveries": "Mis entregas",
+  "navGroup.service": "Servicio",
+  "navGroup.kitchen": "Cocina y stock",
+  "navGroup.people": "Clientes y equipo",
+  "navGroup.business": "Negocio",
+  "shell.search": "Buscar o ir a…",
+  "shell.noResults": "Sin resultados",
+  "shell.navigate": "Ir a",
+  "shell.actions": "Acciones",
+  "shell.toggleTheme": "Cambiar claro / oscuro",
+  "shell.collapse": "Contraer barra lateral",
+  "shell.expand": "Expandir barra lateral"
 }

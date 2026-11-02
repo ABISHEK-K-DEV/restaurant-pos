@@ -1,25 +1,36 @@
 import { LifeBuoy } from "lucide-react";
 
+const REPO = "https://github.com/ABISHEK-K-DEV/restaurant-pos";
+
+export function SupportLink({ iconOnly = false }: { iconOnly?: boolean }) {
+  return (
+    <a
+      href={`${REPO}/issues`}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={iconOnly ? "Support" : undefined}
+      title={iconOnly ? "Support" : undefined}
+      className="flex h-8 shrink-0 items-center gap-1.5 rounded-md px-2.5 text-[12px] whitespace-nowrap text-sidebar-muted transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+    >
+      <LifeBuoy className="h-3.5 w-3.5" />
+      {!iconOnly && "Support"}
+    </a>
+  );
+}
+
+/** Bottom row of the mobile navigation drawer. */
 export function BrandFooter() {
   return (
-    <div className="flex flex-col gap-2 border-t border-sidebar-border px-4 py-3">
+    <div className="flex items-center justify-between gap-2 border-t border-sidebar-border px-5 py-3">
       <a
-        href="https://github.com/ABISHEK-K-DEV/restaurant-pos/issues"
+        href={REPO}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-1.5 rounded-lg border border-sidebar-border px-3 py-1.5 text-xs font-medium text-sidebar-foreground/80 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-      >
-        <LifeBuoy className="h-3.5 w-3.5" />
-        Contact support
-      </a>
-      <a
-        href="https://github.com/ABISHEK-K-DEV/restaurant-pos"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-left text-xs font-medium leading-tight text-sidebar-foreground/70 hover:text-sidebar-foreground hover:underline"
+        className="eyebrow text-sidebar-muted transition-colors hover:text-sidebar-foreground"
       >
         Restaurant POS
       </a>
+      <SupportLink />
     </div>
   );
 }

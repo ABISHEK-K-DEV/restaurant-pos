@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AlertCircle } from "lucide-react";
-import { Logo } from "@/components/layout/logo";
+import { AuthFrame, AuthHeading } from "@/components/layout/auth-frame";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -56,26 +56,23 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="relative flex flex-1 items-center justify-center overflow-hidden bg-background px-4">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(50%_50%_at_50%_0%,color-mix(in_oklch,var(--primary),transparent_90%),transparent)]"
-      />
+    <AuthFrame
+      aside={
+        <>
+          New restaurant?{" "}
+          <Link href="/signup" className="font-medium text-foreground underline-offset-4 hover:underline">
+            Create an account
+          </Link>
+        </>
+      }
+    >
       <motion.div
         initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-sm"
+        className="w-full"
       >
-        <div className="mb-10 flex flex-col items-center gap-2 text-center">
-          <Link href="/">
-            <Logo size={44} />
-          </Link>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-            Restaurant POS
-          </h1>
-          <p className="text-sm text-muted-foreground">Sign in to manage your restaurant</p>
-        </div>
+        <AuthHeading eyebrow="Sign in" title="Welcome back." subtitle="Sign in to manage your restaurant" />
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
@@ -90,7 +87,7 @@ export default function LoginPage() {
               spellCheck={false}
               enterKeyHint="next"
               autoFocus
-              className="h-11"
+              className="h-11 text-[14px]"
               placeholder="you@restaurant.com or phone number"
               {...register("email")}
             />
@@ -106,7 +103,7 @@ export default function LoginPage() {
               
               autoComplete="current-password"
               enterKeyHint="go"
-              className="h-11"
+              className="h-11 text-[14px]"
               placeholder="Your password"
               {...register("password")}
             />
@@ -148,13 +145,7 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <p className="mt-8 text-center text-xs text-muted-foreground">
-          New restaurant?{" "}
-          <Link href="/signup" className="font-medium text-foreground hover:underline">
-            Create an account
-          </Link>
-        </p>
       </motion.div>
-    </main>
+    </AuthFrame>
   );
 }
